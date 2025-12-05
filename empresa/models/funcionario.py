@@ -40,10 +40,14 @@ class Funcionario:
     
     def __str__(self) -> str:
         return (
-            f'Funcionario(cpf={self._cpf}, pnome={self._pnome}, unome={self._unome}, '
-            f'data_nasc={self._data_nasc}, endereco={self._endereco}, salario={self._salario}, '
-            f'sexo={self._sexo}, cpf_supervisor={self._cpf_supervisor}, '
-            f'numero_departamento={self._numero_departamento}, '
+            f'Funcionario: "{self._pnome} {self._unome}", '
+            f'CPF: "{self._cpf}", '
+            f'Data Nasc: "{self._data_nasc}", '
+            f'Sexo: "{self._sexo}", '
+            f'Endereço: "{self._endereco}", '
+            f'Salario: "{self._salario}", '
+            f'CPF Supervisor: "{self._cpf_supervisor}", '
+            f'Numero Departamento: "{self._numero_departamento}", '
             f'created_at={self._created_at}, updated_at={self._updated_at})'
         )
 

@@ -1,27 +1,40 @@
 ## Programação com Acesso a Banco de Dados
 # Revisão de Orientação a Objetos
 # Prof. Guilherme Leal Santos
-from supabase import Supabase
+
 from empresa.config.database import SupabaseConnection
 from empresa.dao.funcionario_dao import FuncionarioDAO
+from empresa.dao.departamento_dao import DepartamentoDAO 
 
 client = SupabaseConnection().client
 
-# Criando DAO para acessar a tabela funcionario
+# Lendo todos os funcionarios
 funcionario_dao = FuncionarioDAO(client)
 
-# Read All
 for funcionario in funcionario_dao.read_all():
-  print(funcionario)
+    print(funcionario)
 
-# Read
-f = funcionario_dao.read('cpf','111222333444')
+print("-----Departamentos-----")
 
-departamento_dao = departamento(client)
+# Lendo todos os departamentos
+departamento_dao = DepartamentoDAO(client)
 
 for departamento in departamento_dao.read_all():
-  print(departamento)
+    print(departamento)
 
+'''
+# Lendo apenas um departamento
+d = departamento_dao.read('numero_departamento', 101)
+print("-----Departamento lido-----")
+print(d)
+'''
+
+'''
+# Lendo apenas um funcionario
+f = funcionario_dao.read('', '')
+print("-----Funcionario lido-----")
+print(f)
+'''
 
 
 """
@@ -29,7 +42,7 @@ from conta import Conta
 from cliente import Cliente
 from empresa.config.database import SupabaseConnection
 from funcionario.controle_de_bonificacoes import ControleDeBonificacoes
-# from funcionario.funcionario import Funcionario
+from funcionario.funcionario import Funcionario
 from funcionario.gerente import Gerente
 from ifrn.pessoa import Pessoa
 from ifrn.funcionario import Funcionario
