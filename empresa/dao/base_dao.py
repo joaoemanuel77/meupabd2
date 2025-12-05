@@ -43,15 +43,15 @@ class BaseDAO(ABC, Generic[T]):
             return None #retorna nada
     
   ### Read
-  def read_id(self, record_id: int) -> Optional[T]:
+  def read_id(self,  pk: str, value: T) -> Optional[T]:
     try:
-      response = self._client.table(self._table_name).select('*').execute()
-      if response.data:
-        return [self.to_model(item) for item in response.data]
-      return [] #retorna uma lista vazia
+      response = self._client.table(self._table_name).select('*').eq(pk, value).execute()
+      if response.data and len(response.data) > 0:
+        return self.to_model(response.data[0])
+      return None
     except Exception as e:
       print(f'Erro ao buscar todos os registros: {e}')
-      return [] #retorna uma lista vazia
+      return None 
   
   # Retorna todos os valores de uma tabela
   def read_all(self) -> List[T]:

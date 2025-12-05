@@ -4,14 +4,18 @@
 from supabase import Supabase
 from empresa.config.database import SupabaseConnection
 from empresa.dao.funcionario_dao import FuncionarioDAO
-#
+
 client = SupabaseConnection().client
 
 # Criando DAO para acessar a tabela funcionario
 funcionario_dao = FuncionarioDAO(client)
 
+# Read All
 for funcionario in funcionario_dao.read_all():
   print(funcionario)
+
+# Read
+f = funcionario_dao.read('cpf','111222333444')
 
 departamento_dao = departamento(client)
 
