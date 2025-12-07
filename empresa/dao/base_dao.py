@@ -45,7 +45,7 @@ class BaseDAO(ABC, Generic[T]):
   def read(self, pk: str, value: T) -> Optional[T]:
     try:
       response = self._client.table(self._table_name).select('*').eq(pk, value).execute()
-      if response.data and len(response.data) > 0:
+      if response.data:
         return self.to_model(response.data[0])
       return None
     except Exception as e:

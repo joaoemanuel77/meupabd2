@@ -8,6 +8,23 @@ from empresa.dao.departamento_dao import DepartamentoDAO
 
 client = SupabaseConnection().client
 
+'''
+# CREATE - Criando um novo funcionário
+nv_funcionario = FuncionarioDAO(client).to_model({
+    'cpf': '112233445566',
+    'pnome': 'Joao',
+    'unome': 'Araujo',
+    'data_nasc': '2007-05-01',
+    'endereco': 'Alto do Rodrigues - RN',
+    'salario': 5000.00,
+    'cpf_supervisor': '222333344455',
+    'numero_departamento': 39
+})
+create = FuncionarioDAO(client).create(nv_funcionario)
+print("-----Funcionario Criado-----")
+print(create)
+'''
+
 # Lendo todos os funcionarios
 funcionario_dao = FuncionarioDAO(client)
 
@@ -24,16 +41,22 @@ for departamento in departamento_dao.read_all():
 
 '''
 # Lendo apenas um departamento
-d = departamento_dao.read('numero_departamento', 101)
+d = departamento_dao.read('numero_departamento', 39)
 print("-----Departamento lido-----")
 print(d)
 '''
 
 '''
 # Lendo apenas um funcionario
-f = funcionario_dao.read('', '')
+f = funcionario_dao.read('cpf', '112233445566')
 print("-----Funcionario lido-----")
 print(f)
+
+# Atualizando um funcionário (UPDATE)
+f.salario = 8000.00
+updated_funcionario = funcionario_dao.update('cpf', f.cpf, f)
+print("-----Funcionario Atualizado-----")
+print(funcionario_dao.read('cpf', f.cpf))
 '''
 
 
